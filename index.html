@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="smooth-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marruá Consultoria - Maximize Seus Lucros no Abate</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1c1917; /* stone-900 */
+            color: #d6d3d1; /* stone-300 */
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .text-gradient {
+            background-image: linear-gradient(to right, #fde047, #ca8a04); /* yellow-300 to yellow-600 */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-scrolled {
+            background-color: rgba(28, 25, 23, 0.85); /* stone-900 with opacity */
+            backdrop-filter: blur(10px);
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+        .tab-button.active {
+            background-color: #ca8a04; /* yellow-600 */
+            color: #1c1917; /* stone-900 */
+        }
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-active > span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-active > span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-active > span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        /* Custom slider track */
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 8px;
+            background: #44403c; /* stone-700 */
+            border-radius: 9999px;
+        }
+        input[type=range]::-moz-range-track {
+            height: 8px;
+            background: #44403c; /* stone-700 */
+            border-radius: 9999px;
+        }
+        /* Custom slider thumb */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -6px; /* center thumb on track */
+            background-color: #fde047; /* yellow-300 */
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #1c1917; /* stone-900 */
+        }
+        input[type=range]::-moz-range-thumb {
+            background-color: #fde047; /* yellow-300 */
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #1c1917; /* stone-900 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-gradient">Marruá</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#calculadora" class="text-stone-300 hover:text-yellow-400 transition-colors">Prejuízo</a>
+                <a href="#solucao" class="text-stone-300 hover:text-yellow-400 transition-colors">Nossa Atuação</a>
+                <a href="#processo" class="text-stone-300 hover:text-yellow-400 transition-colors">Pontos Críticos</a>
+                <a href="#contato" class="bg-yellow-500 hover:bg-yellow-600 text-stone-900 font-bold py-2 px-5 rounded-full transition-transform hover:scale-105">Agendar Avaliação</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="hamburger-button" class="flex flex-col h-12 w-12 justify-center items-center group">
+                    <span class="hamburger-line block w-6 h-0.5 bg-yellow-400 rounded-full"></span>
+                    <span class="hamburger-line block w-6 h-0.5 bg-yellow-400 rounded-full mt-2"></span>
+                    <span class="hamburger-line block w-6 h-0.5 bg-yellow-400 rounded-full mt-2"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-800/90 backdrop-blur-sm">
+            <a href="#calculadora" class="block text-center text-stone-300 py-3 hover:bg-yellow-600 hover:text-stone-900 transition-colors">Prejuízo</a>
+            <a href="#solucao" class="block text-center text-stone-300 py-3 hover:bg-yellow-600 hover:text-stone-900 transition-colors">Nossa Atuação</a>
+            <a href="#processo" class="block text-center text-stone-300 py-3 hover:bg-yellow-600 hover:text-stone-900 transition-colors">Pontos Críticos</a>
+            <a href="#contato" class="block text-center text-stone-300 py-3 hover:bg-yellow-600 hover:text-stone-900 transition-colors">Agendar Avaliação</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
+            <img src="https://placehold.co/1920x1080/2a2a2a/1a1a1a?text=." alt="Imagem de fundo de gado no pasto" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/2a2a2a/1a1a1a?text=Marru%C3%A1';">
+            <div class="relative z-20 px-6" data-aos="fade-up">
+                <h1 class="text-4xl md:text-7xl font-bold text-white leading-tight mb-4">Não deixe seu lucro na mão do frigorífico.</h1>
+                <p class="text-lg md:text-2xl text-stone-300 max-w-4xl mx-auto">Cada detalhe no abate conta. Garantimos que seu investimento seja pesado, pesado e pago corretamente.</p>
+                <a href="#calculadora" class="mt-8 inline-block bg-yellow-500 hover:bg-yellow-600 text-stone-900 font-bold text-lg py-4 px-10 rounded-full transition-transform hover:scale-105 shadow-lg shadow-yellow-500/20">Descubra seu Prejuízo Potencial <i class="ph-bold ph-arrow-down ml-2"></i></a>
+            </div>
+        </section>
+
+        <!-- Loss Calculator Section -->
+        <section id="calculadora" class="py-20 md:py-32 bg-stone-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Calcule o dinheiro que você está perdendo.</h2>
+                    <p class="text-lg md:text-xl text-stone-400 max-w-3xl mx-auto mt-4">Pequenas perdas por animal se transformam em um grande prejuízo no lote. Use a calculadora para ter uma estimativa clara.</p>
+                </div>
+                
+                <div class="bg-stone-900 p-8 md:p-12 rounded-3xl shadow-2xl max-w-5xl mx-auto border border-stone-700" data-aos="fade-up" data-aos-delay="200">
+                    <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+                        <div class="md:col-span-3 space-y-8">
+                            <div>
+                                <label for="numCabecas" class="flex justify-between font-semibold mb-2 text-lg text-white">
+                                    <span>Quantidade de Animais</span>
+                                    <span id="numCabecasLabel" class="text-yellow-400 font-bold">100</span>
+                                </label>
+                                <input type="range" id="numCabecas" min="10" max="1000" value="100" class="w-full h-2 bg-stone-700 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div>
+                                <label for="valorArroba" class="block font-semibold mb-2 text-lg text-white">Valor da Arroba (@)</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400">R$</span>
+                                    <input type="number" id="valorArroba" value="315" class="w-full pl-10 pr-4 py-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg font-semibold focus:border-yellow-500 focus:ring-0 outline-none transition-colors">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-2 bg-red-900/50 text-center p-6 rounded-2xl border-2 border-dashed border-red-500/50">
+                            <p class="text-red-200 text-lg mb-2">Seu prejuízo potencial é de:</p>
+                            <h3 id="perdaTotal" class="text-4xl md:text-5xl font-bold text-red-400">R$ 5.250,00</h3>
+                            <p class="text-red-300 mt-2">com base em uma perda média de <strong id="perdaMediaAnimal" class="text-white">R$ 52,50</strong> por animal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="solucao" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Ação e Correção em Tempo Real.</h2>
+                    <p class="text-lg text-stone-400 max-w-3xl mx-auto mt-4">Não somos apenas observadores. Somos seus especialistas no frigorífico, defendendo cada grama do seu trabalho com conhecimento técnico e atitude imediata.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-stone-800 p-8 rounded-2xl text-center border-t-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <i class="ph-fill ph-lightning text-5xl text-yellow-400 mx-auto mb-4"></i>
+                        <h3 class="font-bold text-xl text-white mb-2">Ação Imediata</h3>
+                        <p class="text-stone-400">Identificamos desvios e atuamos na hora para corrigir o processo, minimizando perdas.</p>
+                    </div>
+                    <div class="bg-stone-800 p-8 rounded-2xl text-center border-t-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <i class="ph-fill ph-shield-check text-5xl text-yellow-400 mx-auto mb-4"></i>
+                        <h3 class="font-bold text-xl text-white mb-2">Defesa Técnica</h3>
+                        <p class="text-stone-400">Argumentamos tecnicamente para garantir a classificação justa e o pagamento de bonificações.</p>
+                    </div>
+                    <div class="bg-stone-800 p-8 rounded-2xl text-center border-t-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                        <i class="ph-fill ph-scales text-5xl text-yellow-400 mx-auto mb-4"></i>
+                        <h3 class="font-bold text-xl text-white mb-2">Prevenção de Perdas</h3>
+                        <p class="text-stone-400">Nosso acompanhamento evita remoções excessivas e garante o máximo rendimento de carcaça.</p>
+                    </div>
+                    <div class="bg-stone-800 p-8 rounded-2xl text-center border-t-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                        <i class="ph-fill ph-chart-line-up text-5xl text-yellow-400 mx-auto mb-4"></i>
+                        <h3 class="font-bold text-xl text-white mb-2">Relatório Detalhado</h3>
+                        <p class="text-stone-400">Você recebe um laudo completo com fotos e dados para entender os resultados do seu lote.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Critical Points Section -->
+        <section id="processo" class="py-20 md:py-32 bg-stone-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Os 9 Pontos Críticos Onde Seu Lucro Desaparece</h2>
+                    <p class="text-lg text-stone-400 max-w-3xl mx-auto mt-4">Pequenos erros operacionais, somados, geram um grande prejuízo. Nossa equipe monitora e corrige ativamente estas falhas. Conheça cada ponto:</p>
+                </div>
+
+                <div class="w-full max-w-6xl mx-auto grid md:grid-cols-12 gap-8" data-aos="fade-up">
+                    <!-- Vertical Tab Buttons -->
+                    <div class="md:col-span-4 lg:col-span-3">
+                        <div id="tab-buttons" class="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible no-scrollbar">
+                            <button data-tab="esfola" class="tab-button active w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3"><i class="ph ph-knife text-2xl"></i> Esfola</button>
+                            <button data-tab="reata" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-arrows-in-line-vertical text-2xl"></i> Reata</button>
+                            <button data-tab="sangria" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-drop-half-bottom text-2xl"></i> Sangria</button>
+                            <button data-tab="ligamento" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-link text-2xl"></i> Ligamento</button>
+                            <button data-tab="abscesso" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-syringe text-2xl"></i> Abscesso</button>
+                            <button data-tab="contaminacao" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-bacteria text-2xl"></i> Contaminação</button>
+                            <button data-tab="queda" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-arrow-fat-lines-down text-2xl"></i> Queda</button>
+                            <button data-tab="doenca" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-first-aid-kit text-2xl"></i> Doença</button>
+                            <button data-tab="bezerros" class="tab-button w-full text-left p-4 rounded-lg font-semibold transition-colors flex items-center gap-3 mt-2"><i class="ph ph-baby text-2xl"></i> Bezerros</button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="md:col-span-8 lg:col-span-9 bg-stone-900 p-8 rounded-2xl shadow-inner min-h-[420px]">
+                        <div id="tab-content">
+                            <!-- Content will be dynamically inserted here by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contato" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+                 <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 text-stone-900 rounded-3xl p-8 md:p-16 shadow-2xl shadow-yellow-600/20">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Avalie seu Prejuízo na Prática, Sem Custo.</h2>
+                    <p class="text-lg md:text-xl text-yellow-900 max-w-3xl mx-auto mb-8">Acreditamos tanto em nosso trabalho que fazemos um convite: sua primeira avaliação de abate é por nossa conta. Vamos ao frigorífico, realizamos o acompanhamento completo e entregamos o relatório com os resultados, <strong>sem nenhum custo para você.</strong></p>
+                    <a href="https://wa.me/5567992196499?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20avalia%C3%A7%C3%A3o%20de%20abate%20gratuita%21" target="_blank" class="bg-stone-900 text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:bg-black transform hover:scale-105 transition-all inline-block">
+                        <i class="ph-bold ph-whatsapp-logo mr-2"></i> Agende sua Avaliação Gratuita
+                    </a>
+                    <p class="mt-4 text-yellow-800">Clique para falar diretamente conosco pelo WhatsApp.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 border-t border-stone-800 py-8">
+        <div class="container mx-auto px-6 text-center text-stone-400">
+            <p>&copy; <span id="current-year"></span> Marruá Consultoria. Todos os direitos reservados.</p>
+            <p class="text-stone-500 text-sm mt-1">Protegendo o lucro da pecuária de ponta a ponta.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // Initialize AOS (Animate on Scroll)
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburgerButton.addEventListener('click', () => {
+                hamburgerButton.classList.toggle('hamburger-active');
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu on link click
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerButton.classList.remove('hamburger-active');
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+
+            // --- Loss Calculator Logic ---
+            const numCabecasSlider = document.getElementById('numCabecas');
+            const numCabecasLabel = document.getElementById('numCabecasLabel');
+            const valorArrobaInput = document.getElementById('valorArroba');
+            const perdaTotalDisplay = document.getElementById('perdaTotal');
+            const perdaMediaAnimalDisplay = document.getElementById('perdaMediaAnimal');
+
+            const perdaMediaPorKg = 2.5; // Average loss in kg per animal
+
+            function formatCurrency(value) {
+                return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+            }
+
+            function updateCalculations() {
+                const numCabecas = parseInt(numCabecasSlider.value);
+                const valorArroba = parseFloat(valorArrobaInput.value) || 0;
+                
+                numCabecasLabel.textContent = numCabecas;
+
+                const valorKg = valorArroba / 15;
+                const perdaPorAnimal = perdaMediaPorKg * valorKg;
+                const perdaTotal = perdaPorAnimal * numCabecas;
+
+                if (perdaMediaAnimalDisplay) {
+                    perdaMediaAnimalDisplay.innerHTML = `<strong class="text-white">${formatCurrency(perdaPorAnimal)}</strong>`;
+                }
+                if (perdaTotalDisplay) {
+                    perdaTotalDisplay.textContent = formatCurrency(perdaTotal);
+                }
+            }
+
+            if (numCabecasSlider) {
+                numCabecasSlider.addEventListener('input', updateCalculations);
+                valorArrobaInput.addEventListener('input', updateCalculations);
+                // Initial calculation
+                updateCalculations();
+            }
+
+            // --- Interactive Tabs for Critical Points ---
+            const tabData = {
+                esfola: {
+                    title: "1. Esfola do Quarto/Matambre",
+                    description: "A remoção do couro deve ser precisa. Erros comuns podem retirar parte do matambre junto, impactando diretamente o peso da carcaça.",
+                    loss: "300g a 800g",
+                    image: "https://placehold.co/600x400/333/555?text=Erro+na+Esfola"
+                },
+                reata: {
+                    title: "2. Reata",
+                    description: "O couro deve ser baixado até o cupim; caso contrário, haverá remoção de gordura aderida, reduzindo o rendimento da carcaça.",
+                    loss: "200g a 600g",
+                    image: "https://placehold.co/600x400/333/555?text=Erro+na+Reata"
+                },
+                sangria: {
+                    title: "3. Sangria",
+                    description: "A remoção da sangria deve ser precisa. Retirar carne em excesso nesta área é um erro comum que impacta o peso final.",
+                    loss: "200g a 500g",
+                    image: "https://placehold.co/600x400/333/555?text=Erro+na+Sangria"
+                },
+                ligamento: {
+                    title: "4. Ligamento Cervical",
+                    description: "A retirada do ligamento deve ser 'limpa'. Remover carne junto é um desperdício que afeta o aproveitamento da carcaça.",
+                    loss: "300g a 700g",
+                    image: "https://placehold.co/600x400/333/555?text=Erro+no+Ligamento"
+                },
+                abscesso: {
+                    title: "5. Abscesso Vacinal",
+                    description: "A remoção do abscesso é obrigatória, mas deve ser precisa. Retirar carne em excesso ao redor é um prejuízo direto.",
+                    loss: "200g a 800g",
+                    image: "https://placehold.co/600x400/333/555?text=Erro+no+Abscesso"
+                },
+                contaminacao: {
+                    title: "6. D.I.F - Contaminação",
+                    description: `Durante o processo na linha, por falhas operacionais, é comum o estouro do conteúdo ruminal, que contamina a carcaça.
+Quando isso acontece, a carcaça precisa ser desviada para o DIF, onde é feita a limpeza manual, o contaminado é retirado com a faca.
+O problema é que tudo que foi removido não é pesado, impactando diretamente o rendimento da carcaça e gerando prejuízo ao produtor.`,
+                    loss: "Mínimo de 3kg",
+                    image: "https://placehold.co/600x400/333/555?text=Contamina%C3%A7%C3%A3o"
+                },
+                queda: {
+                    title: "7. D.I.F - Queda da Carcaça",
+                    description: "Uma carcaça que cai do gancho é contaminada. A limpeza no D.I.F. pode resultar em grandes perdas de carne se não for acompanhada de perto.",
+                    loss: "Mínimo de 5kg",
+                    image: "https://placehold.co/600x400/333/555?text=Queda+de+Carca%C3%A7a"
+                },
+                doenca: {
+                    title: "8. D.I.F - Desvio por Doença",
+                    description: "Quando uma carcaça é desviada, acompanhamos de perto a avaliação do médico veterinário, documentando o processo para garantir que apenas o necessário seja descartado.",
+                    loss: "Pode chegar a toda a carcaça",
+                    image: "https://placehold.co/600x400/333/555?text=Desvio+por+Doen%C3%A7a"
+                },
+                bezerros: {
+                    title: "9. Bezerros em Abate (Peso Vivo)",
+                    description: "A inclusão indevida de bezerros no romaneio gera cobranças erradas no pagamento final, um prejuízo oculto e significativo.",
+                    loss: "Até R$600 por bezerro",
+                    image: "https://placehold.co/600x400/333/555?text=Bezerro+no+Lote"
+                }
+            };
+            
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContentContainer = document.getElementById('tab-content');
+
+            function renderTabContent(tabId) {
+                const content = tabData[tabId];
+                if (!content) return;
+
+                tabContentContainer.innerHTML = `
+                    <div class="grid lg:grid-cols-5 gap-8 items-center animate-fade-in">
+                        <div class="lg:col-span-3">
+                            <h3 class="text-3xl font-bold text-gradient mb-4">${content.title}</h3>
+                            <p class="text-stone-300 mb-6 text-lg">${content.description}</p>
+                            <div class="bg-red-900/50 p-4 rounded-lg inline-block border border-red-500/30">
+                                <p class="font-semibold text-red-200">Prejuízo Potencial: <span class="text-xl font-bold text-white">${content.loss}</span></p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2 mt-6 lg:mt-0">
+                            <img src="${content.image}" alt="${content.title}" class="rounded-lg shadow-lg w-full object-cover aspect-video" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1c1917/44403c?text=Marru%C3%A1';">
+                        </div>
+                    </div>
+                `;
+                // Simple fade-in animation
+                tabContentContainer.querySelector('.animate-fade-in').style.animation = 'fadeIn 0.5s ease-in-out';
+            }
+            
+            // Keyframes for fade-in animation
+            const styleSheet = document.createElement("style");
+            styleSheet.type = "text/css";
+            styleSheet.innerText = `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
+            document.head.appendChild(styleSheet);
+
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Deactivate all buttons
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Activate clicked button
+                    button.classList.add('active');
+                    // Render new content
+                    renderTabContent(button.dataset.tab);
+                });
+            });
+
+            // Initial render for the first tab
+            if (tabButtons.length > 0) {
+                renderTabContent(tabButtons[0].dataset.tab);
+            }
+
+            // --- Footer Current Year ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
